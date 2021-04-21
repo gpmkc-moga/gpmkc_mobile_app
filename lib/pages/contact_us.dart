@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:gpmkc_mobile_app/utils.dart';
-// import 'package:email_validator/email_validator.dart';
 import 'package:package_info/package_info.dart';
 
 import '../constants.dart';
-
-import 'package:logger/logger.dart';
-
-var logger = Logger(
-  printer: PrettyPrinter(),
-);
 
 class PageContactUs extends StatelessWidget {
   const PageContactUs({

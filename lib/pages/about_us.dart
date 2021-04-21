@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 
 import '../constants.dart';
-
-var logger = Logger(
-  printer: PrettyPrinter(),
-);
 
 class PageAboutUs extends StatelessWidget {
   const PageAboutUs({

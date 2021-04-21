@@ -1,13 +1,8 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:gpmkc_mobile_app/audio/app_audio_player_task.dart';
-import 'package:logger/logger.dart';
 
 import '../constants.dart';
-
-var logger = Logger(
-  printer: PrettyPrinter(),
-);
 
 class Page247Radio extends StatelessWidget {
   const Page247Radio({

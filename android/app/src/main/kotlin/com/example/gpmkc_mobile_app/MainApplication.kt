@@ -1,4 +1,12 @@
-package com.example.gpmkc_mobile_app
+package com.wahegurulive.gpmkc_mobile_app
 
-class MainApplication {
+import android.content.Context
+import androidx.multidex.MultiDex
+import io.flutter.app.FlutterApplication
+
+class MainApplication : FlutterApplication() {
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 }

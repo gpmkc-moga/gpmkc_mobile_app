@@ -43,6 +43,10 @@ const String kKeyMediaItemAlbum = 'album';
 const String kChannelNameAudio = 'Audio';
 const String kChannelDescriptionAudio = 'For audio notifications';
 
+const String kKeyPostTypeWebsiteNotification = 'post_type';
+const String kKeyPostTypeHukumnamaWebsiteNotification = 'hukumnama';
+const String kOneSignalAppID = "4eb7e740-291e-4255-9fca-2d348e33a063";
+
 const String kLabelOurMissionText =
     "To share and experience common love for the inner divine according to teachings of Sahib Shri Guru Granth Sahib Ji.";
 const String kLabelBhaiSahibName = "Bhai Sewa Singh ji Tarmala";

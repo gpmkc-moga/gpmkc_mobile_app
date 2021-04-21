@@ -6,13 +6,51 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 import 'constants.dart';
 import 'pages/home.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String notificationTapType;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  Future<void> initPlatformState() async {
+    OneSignal.shared.init(kOneSignalAppID, iOSSettings: {
+      OSiOSSettings.autoPrompt: false,
+      OSiOSSettings.inAppLaunchUrl: false
+    });
+    OneSignal.shared
+        .setInFocusDisplayType(OSNotificationDisplayType.notification);
+    await OneSignal.shared
+        .promptUserForPushNotificationPermission(fallbackToSettings: true);
+
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      // will be called whenever a notification is opened/button pressed.
+      // check if notifcation was tapped(not closed) and if "hukumnama" is in "post_type"
+      if (result.action.type == OSNotificationActionType.opened) {
+        this.setState(() {
+          notificationTapType = result.notification.payload
+                  .additionalData[kKeyPostTypeWebsiteNotification] ??
+              null;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -66,7 +104,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: AudioServiceWidget(
-        child: PageHome(),
+        child: PageHome(notificationTapType: notificationTapType),
       ),
     );
   }

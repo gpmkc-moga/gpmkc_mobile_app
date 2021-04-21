@@ -4,15 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gpmkc_mobile_app/audio/app_audio_player_task.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:logger/logger.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../constants.dart';
-
-var logger = Logger(
-  printer: PrettyPrinter(),
-);
 
 const String Hukumnama_img_tag = "Hukumnama_img_tag";
 

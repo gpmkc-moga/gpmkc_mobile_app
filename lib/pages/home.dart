@@ -9,20 +9,50 @@ import 'contact_us.dart';
 class PageHome extends StatelessWidget {
   const PageHome({
     Key key,
+    this.notificationTapType,
   }) : super(key: key);
+
+  final String notificationTapType;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BodyHome(),
+      body: BodyHome(notificationTapType: notificationTapType),
     );
   }
 }
 
-class BodyHome extends StatelessWidget {
+class BodyHome extends StatefulWidget {
+  final String notificationTapType;
+
   const BodyHome({
     Key key,
+    this.notificationTapType,
   }) : super(key: key);
+
+  @override
+  _BodyHomeState createState() => _BodyHomeState();
+}
+
+class _BodyHomeState extends State<BodyHome> {
+  @override
+  void initState() {
+    super.initState();
+    handleNotificationTapType();
+  }
+
+  @override
+  void didUpdateWidget(covariant BodyHome oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    handleNotificationTapType();
+  }
+
+  void handleNotificationTapType() {
+    if (widget.notificationTapType ==
+        kKeyPostTypeHukumnamaWebsiteNotification) {
+      Utils.launchCustomTab(context, kWaheguruLiveTodayHukumnamaLink);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,13 +108,6 @@ class BodyHome extends StatelessWidget {
                   titleText: kLabelUpcomingEvents,
                   tapCallback: () {
                     Utils.launchCustomTab(context, kWaheguruLiveProgramsLink);
-                  },
-                ),
-                MenuItem(
-                  imagePath: kAssetPathGurmatClass,
-                  titleText: kLabelGurmatClass,
-                  tapCallback: () {
-                    Utils.launchUniversalLinkIos(kGurmatClassAppLink);
                   },
                 ),
                 MenuItem(
