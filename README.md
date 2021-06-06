@@ -1,6 +1,6 @@
 # Gurdwara Prabh Milne Ka Chao, Mobile App
 
-Official Gurdwara Sahib with following features:
+Official Gurdwara Sahib app with following features:
 
 📜 Read Daily Hukumnama
 🔊 Online Radio
