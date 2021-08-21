@@ -46,6 +46,9 @@ const String kChannelDescriptionAudio = 'For audio notifications';
 const String kKeyPostTypeWebsiteNotification = 'post_type';
 const String kKeyPostTypeHukumnamaWebsiteNotification = 'hukumnama';
 const String kOneSignalAppID = "4eb7e740-291e-4255-9fca-2d348e33a063";
+const String kPrefKeyisNotifIAMAddTrigger = 'isNotifIAMAddTrigger';
+const String kOneSignalKeyDeviceManuf = "device_manuf";
+const String kOneSignalValueIssueManuf = "issue_manuf";
 
 const String kLabelOurMissionText =
     "To share and experience common love for the inner divine according to teachings of Sahib Shri Guru Granth Sahib Ji.";
@@ -130,4 +133,22 @@ const String sample_hukumnama_photo_link =
 const String Audio_Album_Name = "Gurdwara Prabh Milne Ka Chao, Moga";
 const String Audio_Radio_Title = "24x7 Radio";
 const String Audio_Radio_Link =
-    "http://cast1.asurahosting.com/proxy/gpmkc/stream";
+    "https://cast1.asurahosting.com/proxy/gpmkc/stream";
+
+const kManufWithIssues = [
+  "asus",
+  "samsung",
+  "huawei",
+  "xiaomi",
+  "oppo",
+  "vivo",
+  "lenovo",
+  "sony",
+  "asus",
+  "leco",
+  "letv",
+  "lenovo",
+  "oneplus",
+  "redmi",
+  "miui 10"
+];

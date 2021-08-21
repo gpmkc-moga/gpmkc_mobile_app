@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> initPlatformState() async {
     OneSignal.shared.init(kOneSignalAppID, iOSSettings: {
-      OSiOSSettings.autoPrompt: false,
+      OSiOSSettings.autoPrompt: true,
       OSiOSSettings.inAppLaunchUrl: false
     });
     OneSignal.shared

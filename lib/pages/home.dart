@@ -1,5 +1,11 @@
+import 'dart:collection';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gpmkc_mobile_app/pages/247_radio.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:device_info/device_info.dart';
 
 import '../constants.dart';
 import '../utils.dart';
@@ -51,6 +57,33 @@ class _BodyHomeState extends State<BodyHome> {
     if (widget.notificationTapType ==
         kKeyPostTypeHukumnamaWebsiteNotification) {
       Utils.launchCustomTab(context, kWaheguruLiveTodayHukumnamaLink);
+    } else {
+      //do other checks on launch
+      setupIAMForBackgroundNotifications();
+    }
+  }
+
+  Future<void> setupIAMForBackgroundNotifications() async {
+    if (Platform.isAndroid) {
+      //check for suspected manufacturers
+      //show IAM for notif settings ONLY once
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      String deviceManufacturer = androidInfo.manufacturer;
+
+      HashSet<String> manufWithIssues = HashSet<String>.of(kManufWithIssues);
+
+      if (manufWithIssues.contains(deviceManufacturer.toLowerCase())) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        bool isIAMShown =
+            (prefs.getBool(kPrefKeyisNotifIAMAddTrigger) ?? false);
+        if (!isIAMShown) {
+          OneSignal.shared
+              .addTrigger(kOneSignalKeyDeviceManuf, kOneSignalValueIssueManuf);
+          //flag as shown once
+          prefs.setBool(kPrefKeyisNotifIAMAddTrigger, true);
+        }
+      }
     }
   }
 
